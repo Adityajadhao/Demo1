@@ -14,7 +14,7 @@
        $input = $_POST["txt"];
        if (empty($input))
     {
-        echo "this field cannot be empty";
+        echo "!!please Enter Even numbered string!!";
     }
     else{
        $l=strlen($input);
@@ -52,7 +52,7 @@
         echo "<br>"."items removed  :";
         print_r ($slice);
         echo"<br>";
-        error_reporting(E_ALL ^ E_WARNING);
+        
         echo "final String: ".$input.$concat;
         
 
