@@ -30,7 +30,7 @@ padding: 10px;
 
 margin: 20px 20px ;
 
-border: gray;
+border: black;
 
 cursor: pointer;
 
