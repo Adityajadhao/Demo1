@@ -12,6 +12,11 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
        $input = $_POST["txt"];
+       if (empty($input))
+    {
+        echo "this field cannot be empty";
+    }
+    else{
        $l=strlen($input);
        
        if ($l % 2 ==0){
@@ -48,8 +53,6 @@
         print_r ($slice);
         echo"<br>";
         error_reporting(E_ALL ^ E_WARNING);
-        echo "Adding String & Array:".$input.$strtoarr;
-        echo"<br>";
         echo "final String: ".$input.$concat;
         
 
@@ -60,6 +63,7 @@
 
 
     }
+}
     ?>
     </form>
 </body>
