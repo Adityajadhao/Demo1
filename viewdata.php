@@ -3,50 +3,34 @@
 <body>
 
 <?php
-echo "<table style='border: solid 1px black;'>";
- echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
-
-class TableRows extends RecursiveIteratorIterator {
-    function __construct($it) {
-        parent::__construct($it, self::LEAVES_ONLY);
-    }
-
-    function current() {
-        return "<td style='width: 150px; border: 1px solid black;'>" . parent::current(). "</td>";
-    }
-
-    function beginChildren() {
-        echo "<tr>";
-    }
-
-    function endChildren() {
-        echo "</tr>" . "\n";
-    }
-}
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "registration_form";
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, email FROM register");
-    $stmt->execute();
-
-    // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-        echo $v;
-    }
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
-catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
+
+$sql = "SELECT id, firstname, lastname, email FROM register";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  echo "<table><tr><th>ID</th><th>Name</th><th>Email</th></tr>";
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." "."</td><td>".$row["lastname"]." ".$row["email"]."</td></tr>";
+  }
+  echo "</table>";
+} else {
+  echo "0 results";
 }
-$conn = null;
-echo "</table>";
+$conn->close();
+
 ?>
 
 </body>
