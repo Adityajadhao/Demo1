@@ -22,6 +22,7 @@
 
    
     <button type="submit" class="registerbtn">Register</button>
+
     
   </div>
   
@@ -34,6 +35,9 @@
 	$lastName = $_POST['lastName'];
 	$email = $_POST['email'];
 	
+	// if (isset($_POST['viewDetails']) != Null){
+	// 	header('location:viewdata.php');
+	// }
 	// Database connection
 	$conn = new mysqli('localhost','root','','registration_form');
 	if($conn->connect_error){
