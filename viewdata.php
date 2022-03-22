@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
 <body>
+    
 
 <?php
 
@@ -20,10 +40,10 @@ $sql = "SELECT id, firstname, lastname, email FROM register";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  echo "<table><tr><th>ID</th><th>Name</th><th>Email</th></tr>";
+  echo "<table><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Email</th></tr>";
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." "."</td><td>".$row["lastname"]." ".$row["email"]."</td></tr>";
+    echo "<tr><td>".$row["id"]."</td><td>".$row["firstname"]." "."</td><td>".$row["lastname"]." "."</td><td>".$row["email"]."</td></tr>";
   }
   echo "</table>";
 } else {

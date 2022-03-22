@@ -12,7 +12,7 @@
     <label for="firstName"><b>FirstName</b></label>
     <input type="text" placeholder="Enter firstName" name="firstName" id="firstName" required>
     <label for="lastName"><b>LastName</b></label>
-    <input type="text" placeholder="lastName" name="lastName" id="lastName" required>
+    <input type="text" placeholder="Enter lastName" name="lastName" id="lastName" required>
 
     <label for="email"><b>Email</b></label>
     <input type="email" placeholder="Enter Email" name="email" id="email" required>
@@ -22,6 +22,12 @@
 
    
     <button type="submit" class="registerbtn">Register</button>
+	<a href='viewdata.php' type='submit'>View Details</a><br>
+	<a href='deletedata.php' type='submit'>Delete Data</a><br>
+	<a href='updatedata.php' type='submit'>Update Data</a><br>
+	
+
+	
 
     
   </div>
@@ -47,10 +53,10 @@
 		$stmt = $conn->prepare("insert into register(firstName, lastName, email) values(?, ?, ?)");
 		$stmt->bind_param("sss", $firstName, $lastName, $email);
 		$execval = $stmt->execute();
-		// echo $execval;
+		//echo $execval;
 		echo "Registration successfull...";
 		
-    echo"<a href='viewdata.php'<button type='submit'>Click here to view details</button></a>";
+    
 		$stmt->close();
 		$conn->close();
 	}
